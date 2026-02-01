@@ -14,6 +14,29 @@ Standard LLVM Windows packages (like [vovkos](https://github.com/aspect-build/ll
 
 This package builds LLVM with all targets enabled.
 
-## Building
+## Building Your Own
 
-To build your own, see [`scripts/build-llvm-windows/`](https://github.com/upstat-io/ori-lang/tree/master/scripts/build-llvm-windows) in the Ori repo.
+### Prerequisites
+
+- Windows 10/11
+- [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) with "Desktop development with C++" workload
+
+### Build
+
+Open PowerShell and run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build.ps1
+```
+
+The script will:
+1. Install Scoop, CMake, Ninja, 7zip (if needed)
+2. Clone LLVM 17.0.6
+3. Build with all targets (~1-2 hours)
+4. Package as `LLVM-17.0.6-win64.7z`
+
+### Upload a New Release
+
+```powershell
+gh release create v17.0.6 LLVM-17.0.6-win64.7z --title "LLVM 17.0.6 for Windows"
+```
